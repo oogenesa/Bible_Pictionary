@@ -6,6 +6,10 @@ import QuizMainScreen from './quizMainScreen';
 import QuizSecondScreen from './quizSecondScreen';
 import QuestionScreen from './questionScreen';
 import QuizLevelScreen from './quizLevelScreen';
+import InfoMainScreen from './infoScreen';
+import InfoSecondScreen from './infoSecondScreen';
+import InfoDetailScreen from './infoDetailScreen';
+import {Image, View} from 'react-native';
 
 //import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -15,15 +19,29 @@ const Tab = createMaterialBottomTabNavigator();
 
 const MainTabScreen = () => {
   return (
-    <Tab.Navigator initialRouteName="Home" activeColor="#fff">
+    <Tab.Navigator initialRouteName="Home" activeColor="#fff" inactiveColor="#fff" barStyle={{ backgroundColor: '#fff' }}>
       <Tab.Screen
         name="Home"
         component={HomeStackScreen}
         options={{
           tabBarLabel: 'Home',
-          tabBarColor: '#009387',
+          
           tabBarIcon: ({color}) => (
-            <MaterialIcons name="home" color={color} size={30} />
+            <View
+              style={{
+                width: 80,
+                height: 80,
+                backgroundColor: '#fff',
+                borderRadius :100,
+                position: 'absolute',
+                top: -30,
+                
+              }}>
+              <Image
+                style={{width: 80, height: 80}}
+                source={require('../assets/images/bery_logo.png')}
+              />
+            </View>
           ),
         }}
       />
@@ -40,6 +58,7 @@ const HomeStackScreen = ({navigation}) => (
     <HomeStack.Screen
       name="Home"
       component={HomeScreen}
+      
       //   options={{
       //     title: 'Overview',
       //     headerLeft: () => (
@@ -55,6 +74,12 @@ const HomeStackScreen = ({navigation}) => (
     <HomeStack.Screen name="QuizMain" component={QuizMainScreen} />
     <HomeStack.Screen name="QuizLevel" component={QuizLevelScreen} />
     <HomeStack.Screen name="QuizSecond" component={QuizSecondScreen} />
+    <HomeStack.Screen name="InfoSecond" component={InfoSecondScreen} />
     <HomeStack.Screen name="Question" component={QuestionScreen} />
+    <HomeStack.Screen name="InfoMain" component={InfoMainScreen} />
+    <HomeStack.Screen name="InfoDetail" component={InfoDetailScreen} />
   </HomeStack.Navigator>
 );
+{
+  /* <MaterialIcons name="home" color={color} size={30} /> */
+}

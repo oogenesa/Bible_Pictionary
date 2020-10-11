@@ -7,10 +7,9 @@ import {
   Image,
   TextInput,
 } from 'react-native';
-import {quiz, tes} from '../components/apiFunction';
+import {info} from '../components/apiFunction';
 
-const QuizMainScreen = ({route, navigation}) => {
-  const level = route.params.level;
+const InfoMainScreen = ({route, navigation}) => {
   const [data, setData] = useState({
     keyword: '',
     isValidKeyword: false,
@@ -32,7 +31,6 @@ const QuizMainScreen = ({route, navigation}) => {
   const handleClick = () => {
     //navigation.navigate('QuizSecond');
     const send = {
-      level: level,
       keyword: data.keyword,
     };
     console.log(send);
@@ -42,11 +40,11 @@ const QuizMainScreen = ({route, navigation}) => {
     } else if (data.keyword.length === 0) {
       alert('Harap memasukkan keyword');
     } else {
-      quiz(send).then((res) => {
-        if (res.length === null) {
+      info(send).then((res) => {
+        if (res.length === 0) {
           alert('data tidak ditemukan');
         } else {
-          navigation.navigate('QuizSecond', res);
+          navigation.navigate('InfoSecond', res);
         }
       });
       //console.log(JSON.stringify(send));
@@ -54,14 +52,13 @@ const QuizMainScreen = ({route, navigation}) => {
   };
   const handleSuggestion = (val) => {
     const send = {
-      level: level,
       keyword: val,
     };
-    quiz(send).then((res) => {
+    info(send).then((res) => {
       if (res.length === 0) {
         alert('data tidak ditemukan');
       } else {
-        navigation.navigate('QuizSecond', res);
+        navigation.navigate('InfoSecond', res);
       }
     });
   };
@@ -69,10 +66,10 @@ const QuizMainScreen = ({route, navigation}) => {
     <View style={styles.container}>
       <View>
         <View style={styles.quiz}>
-          <Text style={styles.quiztext}>Bible Ask</Text>
+          <Text style={styles.quiztext}>Info</Text>
         </View>
         <View>
-          <Text style={{fontSize: 18}}>Masukkan nama Kitab atau Tokoh!</Text>
+          <Text style={{fontSize: 18}}>Masukkan nama Kitab atau tokoh!</Text>
           <TextInput
             onChangeText={(val) => textInputChange(val)}
             placeholder="Contoh : Kejadian, Yesus"
@@ -88,35 +85,35 @@ const QuizMainScreen = ({route, navigation}) => {
         </View>
       </View>
       <View>
-        <Text>*Suggestion :</Text>
+        <Text>Suggestion</Text>
         <View style={styles.suggestionbox}>
           <View>
-            <TouchableOpacity onPress={() => handleSuggestion('yesus')}>
+            <TouchableOpacity onPress={() => handleSuggestion('tokoh')}>
               <View style={[styles.button, {backgroundColor: '#e35454'}]}>
-                <Text style={styles.leveltext}>Yesus</Text>
+                <Text style={styles.leveltext}>Tokoh</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity onPress={() => handleSuggestion('yusuf')}>
+            <TouchableOpacity onPress={() => handleSuggestion('kitab wahyu')}>
               <View style={[styles.button, {backgroundColor: '#e35454'}]}>
-                <Text style={styles.leveltext}>Yusuf</Text>
+                <Text style={styles.leveltext}>Kitab wahyu</Text>
               </View>
             </TouchableOpacity>
           </View>
         </View>
         <View style={styles.suggestionbox}>
           <View>
-            <TouchableOpacity onPress={() => handleSuggestion('daud')}>
+            <TouchableOpacity onPress={() => handleSuggestion('tempat')}>
               <View style={[styles.button, {backgroundColor: '#e35454'}]}>
-                <Text style={styles.leveltext}>Daud</Text>
+                <Text style={styles.leveltext}>Tempat</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity onPress={() => handleSuggestion('yosua')}>
+            <TouchableOpacity onPress={() => handleSuggestion('Yesus')}>
               <View style={[styles.button, {backgroundColor: '#e35454'}]}>
-                <Text style={styles.leveltext}>Yosua</Text>
+                <Text style={styles.leveltext}>Yesus</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -189,4 +186,4 @@ const styles = StyleSheet.create({
     fontFamily: 'Dinomouse-Regular',
   },
 });
-export default QuizMainScreen;
+export default InfoMainScreen;

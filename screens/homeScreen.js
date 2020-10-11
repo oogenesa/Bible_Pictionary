@@ -1,6 +1,8 @@
 import React from 'react';
 import {Text, View, Image, StyleSheet, StatusBar, Button} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 
 const Home = ({navigation}) => {
   return (
@@ -26,17 +28,40 @@ const Home = ({navigation}) => {
             paddingTop: 5,
             marginTop: 20,
           }}>
-          <Text style={{fontSize: 30}}>Pilih konten yang kamu mau!</Text>
+          <Text style={styles.konten}>Pilih konten yang kamu mau!</Text>
         </View>
         <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-          <View style={[styles.button, {backgroundColor: '#e35454'}]}>
+          <View>
             <TouchableOpacity onPress={() => navigation.navigate('QuizLevel')}>
-              <Text style={{fontSize: 18, color: '#fff'}}>Bible Quiz</Text>
+              <View
+                style={[
+                  styles.button,
+                  {backgroundColor: '#f36b70', flexDirection: 'row'},
+                ]}>
+                <FontAwesome name="question" color="#217882" size={50} />
+                <View style={{width: 50}}>
+                  <Text
+                    style={[styles.buttontext, {color: '#fff', marginLeft: 8}]}>
+                    Bible Ask
+                  </Text>
+                </View>
+              </View>
             </TouchableOpacity>
           </View>
-          <View style={[styles.button, {backgroundColor: '#b8b65c'}]}>
-            <TouchableOpacity>
-              <Text style={{fontSize: 18}}>Bible Info</Text>
+          <View>
+            <TouchableOpacity onPress={() => navigation.navigate('InfoMain')}>
+              <View
+                style={[
+                  styles.button,
+                  {backgroundColor: '#f9e58d', flexDirection: 'row'},
+                ]}>
+                <Fontisto name="zoom" color="#217882" size={35} />
+                <View style={{width: 50}}>
+                  <Text style={[styles.buttontext, {marginLeft: 5}]}>
+                    Bible Info
+                  </Text>
+                </View>
+              </View>
             </TouchableOpacity>
           </View>
         </View>
@@ -59,16 +84,17 @@ const styles = StyleSheet.create({
   },
   info: {
     alignItems: 'center',
-    backgroundColor: '#995cbd',
+    backgroundColor: '#7d6673',
     padding: 15,
-    marginHorizontal: 20,
+    marginHorizontal: 35,
 
     borderRadius: 5,
   },
   textinfo: {
-    fontSize: 15,
+    fontSize: 18,
     color: '#fff',
     textAlign: 'center',
+    fontFamily: 'New Era Casual Regular',
   },
   button: {
     width: 140,
@@ -80,6 +106,16 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 5,
     justifyContent: 'center',
+  },
+  buttontext: {
+    fontSize: 18,
+    fontFamily: 'BalsamiqSans-Regular',
+    fontWeight: 'bold',
+  },
+  konten: {
+    fontFamily: 'BalsamiqSans-Regular',
+
+    fontSize: 30,
   },
 });
 export default Home;

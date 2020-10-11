@@ -11,6 +11,9 @@ import {
 } from 'react-native';
 
 const QuizLevelScreen = ({navigation}) => {
+  const handleClick = (level) => {
+    navigation.navigate('QuizMain', {level: level});
+  };
   return (
     <View style={styles.container}>
       <View style={styles.headerLogo}>
@@ -22,19 +25,25 @@ const QuizLevelScreen = ({navigation}) => {
       <View style={styles.info}>
         <Text style={styles.textinfo}>Pilih Tingkat Kesulitan</Text>
       </View>
-      <View style={[styles.button, {backgroundColor: '#327820'}]}>
-        <TouchableOpacity>
-          <Text style={styles.leveltext}>Mudah</Text>
+      <View>
+        <TouchableOpacity onPress={() => handleClick('1')}>
+          <View style={[styles.button, {backgroundColor: '#327820'}]}>
+            <Text style={styles.leveltext}>Mudah</Text>
+          </View>
         </TouchableOpacity>
       </View>
-      <View style={[styles.button, {backgroundColor: '#b8b65c'}]}>
-        <TouchableOpacity>
-          <Text style={styles.leveltext}>Medium</Text>
+      <View>
+        <TouchableOpacity onPress={() => handleClick('2')}>
+          <View style={[styles.button, {backgroundColor: '#f9e58d'}]}>
+            <Text style={[styles.leveltext], {color : 'black'}}>Medium</Text>
+          </View>
         </TouchableOpacity>
       </View>
-      <View style={[styles.button, {backgroundColor: '#e35454'}]}>
-        <TouchableOpacity>
-          <Text style={styles.leveltext}>Sulit</Text>
+      <View>
+        <TouchableOpacity onPress={() => handleClick('3')}>
+          <View style={[styles.button, {backgroundColor: '#e35454'}]}>
+            <Text style={styles.leveltext}>Sulit</Text>
+          </View>
         </TouchableOpacity>
       </View>
     </View>
@@ -69,7 +78,7 @@ const styles = StyleSheet.create({
   button: {
     width: 100,
     height: 80,
-    backgroundColor: '#327820',
+
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',

@@ -9,22 +9,21 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
-import {question} from '../components/apiFunction';
+import {infodetail} from '../components/apiFunction';
 
-const QuizSecondScreen = ({route, navigation}) => {
+const InfoSecondScreen = ({route, navigation}) => {
   const balikan = route.params;
 
   const [menuItems, setMenuItems] = useState(balikan);
-
+  console.log(menuItems);
   const handleClick = (item) => {
-    let send = {id: item.id_quiz};
+    let send = {id: item.id_info};
     //navigation.navigate('Question', {id});
-    question(send).then((res) => {
+    infodetail(send).then((res) => {
       if (res.length === 0) {
         alert('jaringan bermasalah');
       } else {
-        console.log(res);
-        navigation.navigate('Question', {res, item});
+        navigation.navigate('InfoDetail', {res, item});
       }
     });
   };
@@ -32,7 +31,7 @@ const QuizSecondScreen = ({route, navigation}) => {
     <View style={styles.container}>
       <View style={{flex: 3}}>
         <View style={styles.quiz}>
-          <Text style={{fontSize: 40 ,fontFamily: 'BalsamiqSans-Regular'}}>Bible Ask</Text>
+          <Text style={styles.title}> Bible Info </Text>
         </View>
         <View>
           <Text style={{fontSize: 18}}>Masukkan nama Kitab atau tokoh!</Text>
@@ -50,8 +49,8 @@ const QuizSecondScreen = ({route, navigation}) => {
       </View>
       <View style={styles.scrool}>
         <FlatList
-          keyExtractor={(item) => item.jawaban}
           data={menuItems}
+          keyExtractor={(item) => item.id_info}
           renderItem={({item}) => (
             <TouchableOpacity onPress={() => handleClick(item)}>
               <View
@@ -61,10 +60,10 @@ const QuizSecondScreen = ({route, navigation}) => {
                   justifyContent: 'flex-start',
                 }}>
                 <View style={styles.gambar}>
-                <Text style={{fontSize :30, fontFamily :'New Era Casual Bold' }}>{item.row_num}</Text>
+                  <Text style={{fontSize :30, fontFamily :'New Era Casual Bold' }}>{item.row_num}</Text>
                 </View>
                 <View style={{width: 170, marginRight: 5}}>
-                  <Text style={{paddingRight: 20}}>{item.pertanyaan}</Text>
+                  <Text style={{paddingRight: 15}}>{item.judul}</Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -75,27 +74,12 @@ const QuizSecondScreen = ({route, navigation}) => {
   );
 };
 
-const Questions = () => {
-  return (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-      }}>
-      <TouchableOpacity style={styles.gambar}>
-        <Text>Gambar 1</Text>
-      </TouchableOpacity>
-      <Text>Pertanyaan 1</Text>
-    </View>
-  );
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
   },
+  title: {fontSize: 40, fontFamily: 'BalsamiqSans-Regular'},
   logo: {
     width: 100,
     height: 100,
@@ -140,4 +124,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#e35454',
   },
 });
-export default QuizSecondScreen;
+export default InfoSecondScreen;

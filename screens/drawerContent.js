@@ -16,15 +16,29 @@ export function DrawerContent(props) {
     <View style={{flex: 1}}>
       <DrawerContentScrollView {...props}>
         <View>
-          <View>
-            <Text>tes</Text>
+          <View style={{marginLeft : 10, alignItems :'center', justifyContent :'center', height:500}}>
+            <Text style={styles.text}>Code For God</Text>
+            <Text style={styles.text}>Hackathon 2020</Text>
+            <Text style={styles.text}>Bible Pictionary (Bery)</Text>
+            <Text style={styles.text}>Presented By</Text>
+            <Text style={styles.text}>Lukas, Nikos, Emma</Text>
+            <Text style={styles.text}>Vegi, Yuli, Rinto</Text>
+            <Text style={styles.text}></Text>
+            <Text style={styles.text}>Segala Hormat Bagi </Text>
+            <Text style={styles.text}>Kemuliaan Tuhan </Text>
           </View>
-          <Drawer.Section>
+          {/* <Drawer.Section>
             <DrawerItem label="Home" />
           </Drawer.Section>
-          <Drawer.Section title="Preferences"></Drawer.Section>
+          <Drawer.Section title="Preferences"></Drawer.Section> */}
         </View>
       </DrawerContentScrollView>
     </View>
   );
 }
+const styles= StyleSheet.create({
+  text :{
+    fontFamily : 'BalsamiqSans-Regular',
+    fontSize : 24
+  }
+})
